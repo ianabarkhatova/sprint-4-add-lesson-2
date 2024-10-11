@@ -1,8 +1,10 @@
-type MyComponentProps = {
-  items: any[]
-  defaultItem: any
+type MyComponentProps<I> = {
+  items: I[]
+  defaultItem: I
 }
-function MyComponent(props: MyComponentProps) {
+
+// если пишем стрелочную ф-ю, то делаем MyComponent<I, >
+function MyComponent<I>(props: MyComponentProps<I>) {
   console.log(props)
   return <p>some content</p>
 }
@@ -15,8 +17,10 @@ const App = () => {
 
   return (
     <>
-      <MyComponent items={['react', 'typescript']} defaultItem={9} />
-      <MyComponent items={users} defaultItem={'JUST STRING'} />
+      {/*если передаем массив строк в items, то в defaultItem можем передать только строку,*/}
+      {/*а если массив юзеров, то только юзера*/}
+      <MyComponent items={['react', 'typescript']} defaultItem={'9'} />
+      <MyComponent items={users} defaultItem={{name: 'Bilbo', age: 111}} />
     </>
   )
 }
@@ -25,3 +29,5 @@ type User = {
   name: string
   age: number
 }
+
+

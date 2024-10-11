@@ -1,7 +1,9 @@
 import { Equal, Expect } from '../common/utils/ts-helpers.ts'
 
 // task 1
-const getLastItem = (array: any[]) => {
+// Generic <T>: The function takes a generic parameter T, which represents the type of the elements in the array
+// Return Type T: The function returns a value of the same type as the array elements.
+const getLastItem = <T>(array: T[]): T => {
   return array[array.length - 1]
 }
 
@@ -10,3 +12,6 @@ const item2 = getLastItem([1, 2])
 
 type test1 = [Expect<Equal<typeof item1, string>>]
 type test2 = [Expect<Equal<typeof item2, number>>]
+
+
+
